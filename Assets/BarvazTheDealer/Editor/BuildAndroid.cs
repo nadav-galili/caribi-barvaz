@@ -8,7 +8,7 @@ using UnityEngine;
 namespace BarvazTheDealer.EditorTools
 {
     /// <summary>
-    /// Menu: Barvaz > Build Android APK  ->  Builds/BarvazTheDealer.apk
+    /// Menu: Barvaz > Build Android APK  ->  Builds/CaribiBarvaz.apk
     /// Needs the "Android Build Support" module (with OpenJDK and SDK/NDK tools) installed from Unity Hub.
     /// Command line (Unity closed):
     ///   Unity -batchmode -quit -projectPath . -buildTarget Android -executeMethod BarvazTheDealer.EditorTools.BuildAndroid.BuildBatch
@@ -16,14 +16,14 @@ namespace BarvazTheDealer.EditorTools
     public static class BuildAndroid
     {
         private const string ScenePath = "Assets/BarvazTheDealer/Scenes/Main.unity";
-        private const string OutputPath = "Builds/BarvazTheDealer.apk";
+        private const string OutputPath = "Builds/CaribiBarvaz.apk";
 
         [MenuItem("Barvaz/Build Android APK")]
         public static void BuildFromMenu()
         {
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
             if (Build()) EditorUtility.RevealInFinder(OutputPath);
-            else EditorUtility.DisplayDialog("Barvaz The Dealer", "The Android build failed. Check the Console for details.", "OK");
+            else EditorUtility.DisplayDialog(AppIdentity.ProductName, "The Android build failed. Check the Console for details.", "OK");
         }
 
         public static void BuildBatch()
@@ -41,11 +41,9 @@ namespace BarvazTheDealer.EditorTools
                 AssetDatabase.Refresh();
             }
 
-            PlayerSettings.productName = "Barvaz The Dealer";
-            PlayerSettings.companyName = "Barvaz";
+            AppIdentity.Apply();
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, "com.barvaz.thedealer");
-            PlayerSettings.bundleVersion = "1.0";
-            PlayerSettings.Android.bundleVersionCode = 1;
+            PlayerSettings.Android.bundleVersionCode = 2; // bump on every release so it installs over the old one
 
             // landscape only
             PlayerSettings.defaultInterfaceOrientation = UIOrientation.AutoRotation;

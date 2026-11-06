@@ -22,18 +22,18 @@ namespace BarvazTheDealer.Game
 
         // ---------- layout (stage is 1920 x 1080, origin at centre; matches the rendered table art) ----------
         private static readonly Vector2 DealerPos = new Vector2(0, 291);
-        private static readonly Vector2 DealerCardSize = new Vector2(108, 151);
-        private static readonly Vector2 PlayerCardSize = new Vector2(136, 190);
-        private const float DealerRowY = -50f;
-        private const float PlayerRowY = -320f;
+        private static readonly Vector2 DealerCardSize = new Vector2(134, 188);
+        private static readonly Vector2 PlayerCardSize = new Vector2(168, 235);
+        private const float DealerRowY = -28f;
+        private const float PlayerRowY = -312f;
         private static readonly Vector2 ShoePos = new Vector2(450, -40);
-        private static readonly Vector2 TrayPos = new Vector2(0, 68);
-        private static readonly Vector2 MuckPos = new Vector2(-430, 30);
-        private static readonly Vector2 AnteSpot = new Vector2(-520, -300);
-        private static readonly Vector2 RaiseSpot = new Vector2(520, -300);
+        private static readonly Vector2 TrayPos = new Vector2(0, 106);
+        private static readonly Vector2 MuckPos = new Vector2(-520, 20);
+        private static readonly Vector2 AnteSpot = new Vector2(-640, -270);
+        private static readonly Vector2 RaiseSpot = new Vector2(640, -270);
         private static readonly Vector2 BankrollPos = new Vector2(-770, -462);
         private static readonly Vector2 PaytablePos = new Vector2(790, 170);
-        private const float ButtonY = -497f;
+        private const float ButtonY = -505f;
 
         private static readonly Color Gold = new Color(0.93f, 0.78f, 0.42f);
         private static readonly Color Cream = new Color(0.99f, 0.95f, 0.87f);
@@ -804,12 +804,12 @@ namespace BarvazTheDealer.Game
 
         private static Vector2 PlayerSlot(int i)
         {
-            return new Vector2((i - 2) * 165f, PlayerRowY);
+            return new Vector2((i - 2) * 186f, PlayerRowY);
         }
 
         private static Vector2 DealerSlot(int i)
         {
-            return new Vector2((i - 2) * 124f, DealerRowY);
+            return new Vector2((i - 2) * 150f, DealerRowY);
         }
 
         private delegate void TweenStep(float k);
@@ -1016,11 +1016,11 @@ namespace BarvazTheDealer.Game
         private void BuildHud()
         {
             // hand labels
-            _dealerHandPill = Pill(new Vector2(0, -140), out _dealerHandLabel);
-            _playerHandPill = Pill(new Vector2(0, -436), out _playerHandLabel);
+            _dealerHandPill = Pill(new Vector2(0, -150), out _dealerHandLabel);
+            _playerHandPill = Pill(new Vector2(0, -448), out _playerHandLabel);
 
             // result banner
-            var banner = UIFactory.Image("Banner", _stage, new Vector2(0, -212), new Vector2(940, 112), GameAssets.Sprite("UI/panel"), Color.white);
+            var banner = UIFactory.Image("Banner", _stage, new Vector2(0, 122), new Vector2(940, 112), GameAssets.Sprite("UI/panel"), Color.white);
             _bannerTitle = UIFactory.Text("Title", banner.transform, "", 50, Gold, new Vector2(0, 18), new Vector2(920, 64), TextAnchor.MiddleCenter, GameAssets.Display);
             UIFactory.AddShadow(_bannerTitle, 0.9f, 3f);
             _bannerDetail = UIFactory.Text("Detail", banner.transform, "", 23, Cream, new Vector2(0, -30), new Vector2(920, 30), TextAnchor.MiddleCenter, GameAssets.Medium);
@@ -1056,8 +1056,8 @@ namespace BarvazTheDealer.Game
 
         private GameObject Pill(Vector2 pos, out Text label)
         {
-            var pill = UIFactory.Image("Hand Label", _stage, pos, new Vector2(560, 50), GameAssets.Sprite("UI/panel"), Color.white);
-            label = UIFactory.Text("Text", pill.transform, "", 24, Cream, new Vector2(0, 1), new Vector2(540, 40), TextAnchor.MiddleCenter, GameAssets.Bold);
+            var pill = UIFactory.Image("Hand Label", _stage, pos, new Vector2(560, 46), GameAssets.Sprite("UI/panel"), Color.white);
+            label = UIFactory.Text("Text", pill.transform, "", 26, Cream, new Vector2(0, 1), new Vector2(540, 40), TextAnchor.MiddleCenter, GameAssets.Bold);
             pill.gameObject.SetActive(false);
             return pill.gameObject;
         }

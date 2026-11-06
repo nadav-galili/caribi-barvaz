@@ -70,7 +70,7 @@ function room() {
     <div style="position:absolute;left:60px;top:70px;width:420px;height:120px;border-radius:18px;
          background:rgba(10,4,6,0.55); border:2px solid rgba(255,90,140,0.35); box-shadow:0 0 40px rgba(255,60,120,0.25), inset 0 0 30px rgba(255,60,120,0.15);"></div>
     <div dir="rtl" style="position:absolute;left:60px;top:78px;width:420px;text-align:center;font-family:Secular;font-size:66px;color:#ffe3f0;
-         text-shadow:0 0 6px #ff4f9a,0 0 16px #ff2f86,0 0 36px #ff2f86,0 0 70px #ff1f70;">קזינו ברווז</div>
+         text-shadow:0 0 6px #ff4f9a,0 0 16px #ff2f86,0 0 36px #ff2f86,0 0 70px #ff1f70;">קריבי ברווז</div>
     <div class="emoji" style="position:absolute;left:30px;top:40px;font-size:64px;transform:rotate(-14deg);filter:drop-shadow(0 0 12px rgba(255,220,120,0.7));">🦆</div>
     <!-- overhead spotlight -->
     <div style="position:absolute;left:360px;top:-200px;width:1200px;height:1100px;border-radius:50%;
@@ -85,10 +85,10 @@ function table() {
   // card guides
   let guides = '';
   for (let i = 0; i < 5; i++) {
-    const x = cx + (i - 2) * 165, y = 860;
-    guides += `<div style="position:absolute;left:${x - 72}px;top:${y - 99}px;width:144px;height:198px;border-radius:14px;border:2px solid rgba(232,198,106,0.22);"></div>`;
-    const dx = cx + (i - 2) * 124, dy = 590;
-    guides += `<div style="position:absolute;left:${dx - 58}px;top:${dy - 79}px;width:116px;height:158px;border-radius:12px;border:2px solid rgba(232,198,106,0.16);"></div>`;
+    const x = cx + (i - 2) * 186, y = 852;
+    guides += `<div style="position:absolute;left:${x - 88}px;top:${y - 122}px;width:176px;height:244px;border-radius:16px;border:2px solid rgba(232,198,106,0.22);"></div>`;
+    const dx = cx + (i - 2) * 150, dy = 568;
+    guides += `<div style="position:absolute;left:${dx - 71}px;top:${dy - 98}px;width:142px;height:196px;border-radius:14px;border:2px solid rgba(232,198,106,0.16);"></div>`;
   }
   const betSpot = (x, y, label, amount) => `
     <div style="position:absolute;left:${x - 78}px;top:${y - 78}px;width:156px;height:156px;border-radius:50%;
@@ -121,12 +121,12 @@ function table() {
     ${ell(800, 420, 'border:3px solid rgba(232,198,106,0.42);')}
     ${ell(788, 408, 'border:1px solid rgba(232,198,106,0.25);')}
     ${guides}
-    <div dir="rtl" style="position:absolute;left:460px;top:672px;width:1000px;text-align:center;font-family:Secular;font-size:64px;color:rgba(240,210,130,0.32);letter-spacing:2px;">ברווז הדילר</div>
+    <div dir="rtl" style="position:absolute;left:460px;top:684px;width:1000px;text-align:center;font-family:Secular;font-size:54px;color:rgba(240,210,130,0.30);letter-spacing:2px;">קריבי ברווז</div>
 
-    ${betSpot(440, 840, 'אנטה', '$5')}
-    ${betSpot(1480, 840, 'העלאה', '$10')}
+    ${betSpot(320, 810, 'אנטה', '$5')}
+    ${betSpot(1600, 810, 'העלאה', '$10')}
     <!-- chip tray -->
-    <div style="position:absolute;left:${cx - 245}px;top:438px;width:490px;height:68px;border-radius:10px;
+    <div style="position:absolute;left:${cx - 245}px;top:400px;width:490px;height:68px;border-radius:10px;
        background:linear-gradient(180deg,#050506,#1c1c22); box-shadow: inset 0 6px 10px rgba(0,0,0,0.9), 0 2px 0 rgba(255,255,255,0.08), 0 6px 14px rgba(0,0,0,0.6);">${tray}</div>
     <!-- card shoe -->
     <div style="position:absolute;left:1335px;top:525px;width:150px;height:110px;border-radius:12px;transform:rotate(-8deg);
@@ -134,6 +134,31 @@ function table() {
        <div style="position:absolute;left:14px;top:12px;width:122px;height:70px;border-radius:8px;background:linear-gradient(180deg,#f4efe4,#cfc6b4);box-shadow:inset 0 -6px 8px rgba(0,0,0,0.3);"></div>
        <div style="position:absolute;left:14px;top:88px;width:122px;height:10px;border-radius:5px;background:linear-gradient(90deg,#6b5320,#f3d98a,#6b5320);"></div>
     </div>
+  </div>`;
+}
+
+
+// ---------------------------------------------------------------- app icon (1024, opaque)
+function appIcon() {
+  // bust.png = barvaz_body + barvaz_head composited in photo coordinates, cropped (160,90)-(1110,1160)
+  const head = b64('bust.png');
+  const S = 1024;
+  const mini = (label, sym, color, rot, x) => `<div style="position:absolute;left:${x}px;top:150px;width:300px;height:420px;border-radius:30px;
+      transform:rotate(${rot}deg);transform-origin:50% 100%;background:linear-gradient(160deg,#ffffff,#efe9dc);
+      box-shadow:0 14px 30px rgba(0,0,0,0.55), inset 0 0 0 3px rgba(0,0,0,0.12);">
+      <div style="position:absolute;left:20px;top:6px;width:110px;text-align:center;color:${color};font-family:Secular;font-size:140px;line-height:150px;">${label}</div>
+      <div class="suit" style="position:absolute;left:20px;top:150px;width:110px;text-align:center;color:${color};font-size:100px;line-height:100px;">${sym}</div></div>`;
+  return `<div style="position:relative;width:${S}px;height:${S}px;overflow:hidden;
+      background: radial-gradient(circle at 50% 42%, #1f9a5c 0%, #0f5c37 48%, #062a18 100%);">
+    <svg width="${S}" height="${S}" style="position:absolute;left:0;top:0;mix-blend-mode:overlay;opacity:0.35">
+      <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+      <rect width="${S}" height="${S}" filter="url(#n)"/></svg>
+    <div style="position:absolute;left:62px;top:62px;width:900px;height:900px;border-radius:50%;
+       box-shadow: inset 0 0 0 10px ${GOLD}, inset 0 0 0 16px rgba(0,0,0,0.25), 0 0 40px rgba(232,198,106,0.25);"></div>
+    ${mini('A', '♠', BLACK, -24, 150)}${mini('K', '♥', RED, 24, 574)}
+    <div style="position:absolute;left:0;bottom:-40px;width:${S}px;height:520px;background:radial-gradient(ellipse at 50% 100%, rgba(0,0,0,0.55), rgba(0,0,0,0) 65%);"></div>
+    <img src="data:image/png;base64,${head}" style="position:absolute;left:${S / 2 - 420}px;top:${S - 946}px;width:840px;height:auto;
+       filter: drop-shadow(0 18px 24px rgba(0,0,0,0.6));">
   </div>`;
 }
 
@@ -152,38 +177,31 @@ const PIP = {
 const SUITS = { S: '♠', H: '♥', D: '♦', C: '♣' };
 const W = 280, H = 392;
 function cardFace(rank, suit) {
+  // "Jumbo index" face, made to be read at phone size: a huge rank + suit in the top-left corner
+  // and one big suit (or the face-card figure) filling the lower-right.
   const color = (suit === 'H' || suit === 'D') ? RED : BLACK;
   const sym = SUITS[suit];
   const label = { 14: 'A', 13: 'K', 12: 'Q', 11: 'J' }[rank] || String(rank);
-  const corner = (rot) => `<div style="position:absolute;${rot ? 'right:12px;bottom:12px;transform:rotate(180deg);' : 'left:12px;top:12px;'}width:50px;text-align:center;color:${color};">
-      <div style="font-family:Secular;font-size:${label === '10' ? 40 : 46}px;line-height:44px;letter-spacing:${label === '10' ? -3 : 0}px;">${label}</div>
-      <div class="suit" style="font-size:34px;line-height:34px;">${sym}</div></div>`;
-  let center = '';
-  const area = { x: 58, y: 40, w: W - 116, h: H - 80 };
-  if (rank <= 10) {
-    for (const [px, py] of PIP[rank]) {
-      const x = area.x + px * area.w, y = area.y + py * area.h;
-      center += `<div class="suit" style="position:absolute;left:${x - 40}px;top:${y - 36}px;width:80px;text-align:center;font-size:60px;line-height:72px;color:${color};${py > .55 ? 'transform:rotate(180deg);' : ''}">${sym}</div>`;
-    }
-  } else if (rank === 14) {
-    center = `<div class="suit" style="position:absolute;left:0;top:${H / 2 - 95}px;width:${W}px;text-align:center;font-size:170px;line-height:190px;color:${color};
-      text-shadow: 0 3px 0 rgba(0,0,0,0.12);">${sym}</div>`;
-    if (suit === 'S') center += `<div class="emoji" style="position:absolute;left:${W / 2 - 22}px;top:${H / 2 - 4}px;font-size:40px;">🦆</div>`;
-  } else {
+  const ten = label === '10';
+  const index = `<div style="position:absolute;left:10px;top:4px;width:${ten ? 150 : 112}px;text-align:center;color:${color};">
+      <div style="font-family:Secular;font-size:${ten ? 112 : 128}px;line-height:128px;letter-spacing:${ten ? -10 : 0}px;">${label}</div>
+      <div class="suit" style="font-size:92px;line-height:88px;margin-top:-6px;">${sym}</div></div>`;
+  let art = '';
+  if (rank >= 11 && rank <= 13) {
     const face = { 13: '🤴', 12: '👸', 11: '💂' }[rank];
-    center = `<div style="position:absolute;left:52px;top:52px;width:${W - 104}px;height:${H - 104}px;border-radius:10px;border:3px solid ${color};
-        background:linear-gradient(180deg, ${color === RED ? '#fde8e8' : '#e8ecf6'}, #fffaf0 50%, ${color === RED ? '#fde8e8' : '#e8ecf6'});
+    art = `<div style="position:absolute;right:16px;bottom:16px;width:150px;height:200px;border-radius:12px;border:3px solid ${color};
+        background:linear-gradient(180deg, ${color === RED ? '#fde8e8' : '#e8ecf6'}, #fffaf0 60%);
         box-shadow: inset 0 0 0 4px #fffaf0, inset 0 0 0 6px ${GOLD};">
-        <div class="emoji" style="position:absolute;left:0;top:44px;width:100%;text-align:center;font-size:110px;">${face}</div>
-        <div class="suit" style="position:absolute;left:12px;bottom:6px;font-size:40px;color:${color};">${sym}</div>
-        <div class="suit" style="position:absolute;right:12px;top:6px;font-size:40px;color:${color};">${sym}</div>
-        <div style="position:absolute;left:0;bottom:16px;width:100%;text-align:center;font-family:Secular;font-size:44px;color:${color};">${label}</div>
-      </div>`;
+        <div class="emoji" style="position:absolute;left:0;top:34px;width:100%;text-align:center;font-size:104px;line-height:130px;">${face}</div></div>`;
+  } else {
+    art = `<div class="suit" style="position:absolute;right:4px;bottom:-14px;width:190px;text-align:center;font-size:${rank === 14 ? 210 : 180}px;line-height:230px;color:${color};
+      text-shadow: 0 3px 0 rgba(0,0,0,0.10);">${sym}</div>`;
+    if (rank === 14 && suit === 'S') art += `<div class="emoji" style="position:absolute;right:76px;bottom:46px;font-size:44px;">🦆</div>`;
   }
   return `<div style="position:relative;width:${W}px;height:${H}px;border-radius:22px;overflow:hidden;
       background: radial-gradient(ellipse at 30% 20%, #ffffff 0%, #fbf8f1 50%, #efe9dc 100%);
       box-shadow: inset 0 0 0 2px rgba(0,0,0,0.12), inset 0 0 0 7px #fffdf8, inset 0 0 0 8px rgba(0,0,0,0.06);">
-      ${corner(false)}${corner(true)}${center}</div>`;
+      ${art}${index}</div>`;
 }
 function cardBack() {
   return `<div style="position:relative;width:${W}px;height:${H}px;border-radius:22px;overflow:hidden;background:#fbf8f1;box-shadow: inset 0 0 0 2px rgba(0,0,0,0.15);">
@@ -280,6 +298,7 @@ async function main() {
   const want = (k) => !only || only.split(',').includes(k);
 
   if (want('room')) await shot('room', room(), 1920, 1080, false);
+  if (want('icon')) await shot('icon', appIcon(), 1024, 1024, false);
   if (want('table')) await shot('table', table(), 1920, 1080);
   if (want('cards')) {
     fs.mkdirSync(path.join(OUT, 'Cards'), { recursive: true });

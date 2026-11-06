@@ -7,21 +7,21 @@ using UnityEngine;
 namespace BarvazTheDealer.EditorTools
 {
     /// <summary>
-    /// Menu: Barvaz > Build Mac App  ->  Builds/Barvaz The Dealer.app
+    /// Menu: Barvaz > Build Mac App  ->  Builds/Caribi Barvaz.app
     /// Command line (Unity closed):
     ///   Unity -batchmode -quit -projectPath . -executeMethod BarvazTheDealer.EditorTools.BuildMac.BuildBatch
     /// </summary>
     public static class BuildMac
     {
         private const string ScenePath = "Assets/BarvazTheDealer/Scenes/Main.unity";
-        private const string OutputPath = "Builds/Barvaz The Dealer.app";
+        private const string OutputPath = "Builds/Caribi Barvaz.app";
 
         [MenuItem("Barvaz/Build Mac App")]
         public static void BuildFromMenu()
         {
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
             if (Build()) EditorUtility.RevealInFinder(OutputPath);
-            else EditorUtility.DisplayDialog("Barvaz The Dealer", "The build failed. Check the Console for details.", "OK");
+            else EditorUtility.DisplayDialog(AppIdentity.ProductName, "The build failed. Check the Console for details.", "OK");
         }
 
         public static void BuildBatch()
@@ -41,8 +41,7 @@ namespace BarvazTheDealer.EditorTools
         {
             EnsureScene();
 
-            PlayerSettings.productName = "Barvaz The Dealer";
-            PlayerSettings.companyName = "Barvaz";
+            AppIdentity.Apply();
             PlayerSettings.fullScreenMode = FullScreenMode.Windowed;
             PlayerSettings.defaultScreenWidth = 1600;
             PlayerSettings.defaultScreenHeight = 900;
